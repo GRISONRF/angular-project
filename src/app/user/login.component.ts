@@ -13,10 +13,6 @@ export class LoginComponent {
     }
 
     login(formValues) {
-        console.log(formValues)
-        console.log(formValues.userName)
-        console.log(formValues.password)
-
 
         this.authService.loginUser(formValues.userName, formValues.password)
         this.router.navigate(['events'])

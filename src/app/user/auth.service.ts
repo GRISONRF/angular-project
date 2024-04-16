@@ -5,19 +5,31 @@ import { IUser } from "./user.model";
 export class AuthService {
     currentUser: IUser
     loginUser(userName: string, password: string) {
-        console.log('inside authservice', this.currentUser)
-        console.log('inside authservice2', userName)
-        console.log('inside authservice3', this.currentUser.firstName)
-
+        
         this.currentUser ={
             id: 1,
             userName: userName,
             firstName: 'John',
             lastName: 'Papa'
+
         }
+        console.log('login user   ', this)
+        localStorage.setItem('currentUser', JSON.stringify(this.currentUser))
     }
 
     isAuthenticated() {
-        return !!this.currentUser;
+        console.log("this.currentUser isAuthenticated",this.currentUser)
+        console.log('login user isAuthenticated  ', this)
+
+        const currentUser = localStorage.getItem('currentUser')
+        return !!currentUser;
+    }
+
+    getCurrentUser() {
+
+        const currentUserString = localStorage.getItem('currentUser')
+        if (currentUserString){
+            return JSON.parse(currentUserString)
+        }
     }
 }
